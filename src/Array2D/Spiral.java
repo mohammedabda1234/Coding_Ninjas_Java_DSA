@@ -21,7 +21,7 @@ public class Spiral {
                 row--;
             }
             if (l < col){
-                for (i = row -1;i>=k;i--){
+                for (i = row -1;i>=k;i--){//bottom to top
                     System.out.print(nums[i][l]+" ");
                 }
                 i++;
