@@ -21,9 +21,19 @@ public class Calculate {
         printN(num - 1);
         System.out.print(num+" ");
     }
+
+    public static int fib(int num){
+        if (num == 1 || num == 2){
+            return 1;
+        }
+        int first = fib( num - 1);
+        int second = fib(num - 2);
+        return first + second;
+    }
     public static void main(String[] args) {
 //        System.out.println(power(2,8));
 //        System.out.println(count(1090));
-        printN(10);
+//        printN(10);
+        System.out.println(fib(8));
     }
 }
