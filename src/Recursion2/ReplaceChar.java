@@ -37,9 +37,20 @@ public class ReplaceChar {
        }
 
     }
+    public static String removeDuplicates(String str){
+        if (str.length() <= 1){
+            return str;
+        }
+        String output = removeDuplicates(str.substring(1));
+        if (output.charAt(0) == str.charAt(0)){
+            return output;
+        }
+        else return str.charAt(0)+output;
+    }
     public static void main(String[] args) {
-        System.out.println(replace("hello",'l','h'));
+        System.out.println(replace("abacd",'a','x'));
         System.out.println(removeX("relex"));
         System.out.println(replacePi("pifacepi"));
+        System.out.println(removeDuplicates("hello"));
     }
 }
