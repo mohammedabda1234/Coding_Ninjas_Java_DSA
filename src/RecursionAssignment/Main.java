@@ -77,6 +77,22 @@ public class Main {
         else
             return s.charAt(0)+smallans;
     }
+
+    public static boolean checkAB(String input) {
+        if(input.length() == 0){
+            return true;
+        }
+
+        if(input.charAt(0) == 'a'){
+            if(input.substring(1).length() > 1 && input.substring(1,3).equals("bb")){
+                return checkAB(input.substring(3));
+            }else{
+                return checkAB(input.substring(1));
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         System.out.println(findGeometricSum(4));
         System.out.println(isStringPalindrome("hello"));
@@ -85,5 +101,6 @@ public class Main {
         System.out.println(countZerosRec(90876));
         System.out.println(countZeros(409098708));
         System.out.println(addStars("hello"));
+        System.out.println(checkAB("abb"));
     }
 }
