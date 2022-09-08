@@ -93,6 +93,24 @@ public class Main {
         return false;
     }
 
+    public static long staircase(int n){
+
+        long storage[]=new long[n+1];
+        storage[0]=1;
+        storage[1]=1;
+        for(int i=2;i<storage.length;i++) {
+            long op2=0,op3=0;
+            long op1=storage[i-1];
+            if(i-2>=0)
+                op2=storage[i-2];
+            if(i-3>=0)
+                op3=storage[i-3];
+            storage[i]=op1+op2+op3;
+        }
+        return storage[n];
+
+
+    }
     public static void main(String[] args) {
         System.out.println(findGeometricSum(4));
         System.out.println(isStringPalindrome("hello"));
@@ -102,5 +120,6 @@ public class Main {
         System.out.println(countZeros(409098708));
         System.out.println(addStars("hello"));
         System.out.println(checkAB("abb"));
+        System.out.println(staircase(5));
     }
 }
