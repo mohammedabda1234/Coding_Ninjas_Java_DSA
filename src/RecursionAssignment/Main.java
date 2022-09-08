@@ -1,6 +1,6 @@
-package Recursion2;
+package RecursionAssignment;
 
-public class Geomatric {
+public class Main {
     public static double findGeometricSum(int k){
 
         if(k==0)
