@@ -32,9 +32,22 @@ public class Main {
         return (input % 10 + sumOfDigits(input / 10));
 
     }
+
+    public static int multiplyTwoIntegers(int m, int n){
+        if (m == 0 || n == 0) {
+            return 0;
+        } else {
+            if (m == 1) {
+                return n;
+            } else {
+                return m + (multiplyTwoIntegers(m, n - 1));
+            }
+        }
+    }
     public static void main(String[] args) {
         System.out.println(findGeometricSum(4));
         System.out.println(isStringPalindrome("hello"));
         System.out.println(sumOfDigits(435));
+        System.out.println(multiplyTwoIntegers(4,5));
     }
 }
