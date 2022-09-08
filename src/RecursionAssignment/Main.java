@@ -68,6 +68,15 @@ public class Main {
         return countZeros(num/10);
     }
 
+    public static String addStars(String s) {
+        if(s.length()==1)
+            return s;
+        String smallans=addStars(s.substring(1));
+        if(s.charAt(0)==smallans.charAt(0))
+            return s.charAt(0)+"*"+smallans;
+        else
+            return s.charAt(0)+smallans;
+    }
     public static void main(String[] args) {
         System.out.println(findGeometricSum(4));
         System.out.println(isStringPalindrome("hello"));
@@ -75,5 +84,6 @@ public class Main {
         System.out.println(multiplyTwoIntegers(4,5));
         System.out.println(countZerosRec(90876));
         System.out.println(countZeros(409098708));
+        System.out.println(addStars("hello"));
     }
 }
