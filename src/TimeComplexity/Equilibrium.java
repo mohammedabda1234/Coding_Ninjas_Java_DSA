@@ -1,4 +1,4 @@
-package Recursion2;
+package TimeComplexity;
 
 public class Equilibrium {
     public static int arrayEquilibriumIndex(int[] arr){
