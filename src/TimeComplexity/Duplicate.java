@@ -76,11 +76,36 @@ public class Duplicate {
         return numTriplets;
 
     }
-    public static void main(String[] args) {
+    public static void rotate(int[] arr, int d) {
+        int n = arr.length;
+        int k =0;
+        int[] temp = new int[n];
+        for (int i = d; i < arr.length; i++) {
+            temp[k] = arr[i];
+            k++;
+        }
+        for (int i = 0; i < d; i++) {
+            temp[k] = arr[i];
+            k++;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = temp[i];
+        }
+    }
+
+    public static void print(int[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
+    }
+        public static void main(String[] args) {
         int[] arr ={0 ,7 ,8,2 ,5 ,4 ,7 ,1 ,3 ,6};
         System.out.println(findDuplicate(arr));
         System.out.println(pairSum(arr,10));
         System.out.println(tripletSum(arr,20));
+        rotate(arr,3);
+        print(arr);
 
     }
 }
