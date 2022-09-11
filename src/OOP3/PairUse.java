@@ -1,19 +1,21 @@
 package OOP3;
 
 public class PairUse {
+    public static<T> void print(T[] arr){
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr[i]);
+        }
+    }
     public static void main(String[] args) {
-        Pair<String,Integer> pInner = new Pair<>("one",1);
-        Pair<Pair<String,Integer>,String> p = new Pair<>();
-        p.setFirst(pInner);
-//        p.setSecond("abcd");
-        System.out.println();
-        System.out.println(p.getFirst().getFirst());
-        System.out.println(p.getFirst().getSecond());
-//        System.out.println();
-//        Pair<String,Integer> p = new Pair<>("one",1);
-//        System.out.println(p.getFirst()+" "+p.getSecond());
-//        p.setFirst("two");
-//        p.setSecond(2);
-//        System.out.println(p.getFirst()+" "+p.getSecond());
+       Integer[] arr = new Integer[5];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = i +1;
+        }
+        print(arr);
+        String[] arrs = new String[5];
+        for (int i = 0; i < arrs.length; i++) {
+            arrs[i]= "abcd";
+        }
+        print(arrs);
     }
 }
