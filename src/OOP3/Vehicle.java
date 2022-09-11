@@ -1,6 +1,6 @@
 package OOP3;
 
-public abstract class Vehicle {
+public class Vehicle implements VehicleInterface{
    private String color;
     int maxSpeed;
    public Vehicle(){
@@ -27,5 +27,12 @@ public abstract class Vehicle {
     public void print(){
         System.out.println("Vehicle "+"color "+color+" maxSpeed "+maxSpeed);
     }
-    public abstract boolean isMotorised();
+    public boolean isMotorised(){
+       return true;
+    }
+
+    @Override
+    public String getCompany() {
+        return null;
+    }
 }
