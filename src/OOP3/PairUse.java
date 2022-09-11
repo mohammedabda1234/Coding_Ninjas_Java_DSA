@@ -1,21 +1,16 @@
 package OOP3;
 
 public class PairUse {
-    public static<T> void print(T[] arr){
+    public static<T extends print> void print(T[] arr){
         for (int i = 0; i < arr.length; i++) {
-            System.out.println(arr[i]);
+            arr[i].print();
         }
     }
     public static void main(String[] args) {
-       Integer[] arr = new Integer[5];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = i +1;
+      Student[] s = new Student[5];
+        for (int i = 0; i < s.length; i++) {
+            s[i] = new Student(10*i +1);
         }
-        print(arr);
-        String[] arrs = new String[5];
-        for (int i = 0; i < arrs.length; i++) {
-            arrs[i]= "abcd";
-        }
-        print(arrs);
+        print(s);
     }
 }
