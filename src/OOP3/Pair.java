@@ -2,6 +2,8 @@ package OOP3;
 public class Pair<T,S> {
     private  T first;
     private S second;
+     public Pair(){
+    }
     public Pair(T first,S second){
        this.first = first;
        this.second = second;
@@ -18,4 +20,5 @@ public class Pair<T,S> {
     public S getSecond() {
         return second;
     }
+
 }
