@@ -1,18 +1,17 @@
 package OOP3;
 
-public class Car extends Vehicle{
-    int numDoor;
-   public Car(){
+public class Car extends Vehicle implements VehicleInterface,CarInterface{
+    //class can only extend one inherit(java not support multi inheritance)
+    //class can implement more than one interface(java support multi interface)
+    public boolean isMotorised(){
+        return true;
     }
-    public Car(int numDoor){
-       this.numDoor = numDoor;
-    }
-    public void print(){
-        System.out.println("Vehicle "+"color "+getColor()+" maxSpeed "+maxSpeed+" numDoor "+numDoor);
+    public String getCompany(){
+        return null;
     }
 
     @Override
-    public boolean isMotorised() {
-        return true;
+    public int numGear() {
+        return 5;
     }
 }
