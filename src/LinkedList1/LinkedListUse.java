@@ -41,11 +41,29 @@ public class LinkedListUse {
         }
         return count;
     }
+    public static void printIthNode(Node<Integer> head, int i){
+        Node<Integer> temp = head;
+        int count = 0;
+        if(temp==null)
+        {
+            return;
+        }
+        while(temp!=null)
+        {
+            if(count==i)
+            {
+                System.out.println(temp.data);
+            }
+            count++;
+            temp=temp.next;
+        }
+    }
     public static void main(String[] args) {
         Node<Integer> head = createLinkedList();
         increment(head);
         print(head);
         System.out.println(length(head));
+        printIthNode(head,2);
 //        Node<Integer> n1 = new Node<>(10);
 //        System.out.println(n1);
 //        System.out.println(n1.data);
