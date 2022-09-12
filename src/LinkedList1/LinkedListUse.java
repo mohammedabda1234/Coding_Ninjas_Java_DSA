@@ -21,11 +21,20 @@ public class LinkedListUse {
             System.out.println(head.data);
             head = head.next;
         }
+        System.out.println();
 //        System.out.println(head.next);
 //        System.out.println(head.next.data);
     }
+    public static void increment(Node<Integer>head){
+        Node<Integer> temp = head;
+        while (temp != null){
+            temp.data++;
+            temp = temp.next;
+        }
+    }
     public static void main(String[] args) {
         Node<Integer> head = createLinkedList();
+        increment(head);
         print(head);
 //        Node<Integer> n1 = new Node<>(10);
 //        System.out.println(n1);
