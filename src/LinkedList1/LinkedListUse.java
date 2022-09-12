@@ -16,10 +16,13 @@ public class LinkedListUse {
         return  n1;
     }
     public static void print(Node<Integer>head){
-        System.out.println("print "+head);
-        System.out.println(head.data);
-        System.out.println(head.next);
-        System.out.println(head.next.data);
+//        System.out.println("print "+head);
+        while (head !=null) {
+            System.out.println(head.data);
+            head = head.next;
+        }
+//        System.out.println(head.next);
+//        System.out.println(head.next.data);
     }
     public static void main(String[] args) {
         Node<Integer> head = createLinkedList();
