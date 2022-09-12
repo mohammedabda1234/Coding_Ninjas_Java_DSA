@@ -1,5 +1,7 @@
 package LinkedList1;
 
+import java.util.Scanner;
+
 public class LinkedListUse {
     public static Node<Integer> createLinkedList(){
         Node<Integer> n1 = new Node<>(10);
@@ -58,12 +60,31 @@ public class LinkedListUse {
             temp=temp.next;
         }
     }
+    public static Node<Integer> takeInput(){
+        Scanner s = new Scanner(System.in);
+        int data = s.nextInt();
+        Node<Integer> head = null;
+        while (data != -1){
+            Node<Integer> currentNode = new Node<>(data);
+            if (head == null){
+                head = currentNode;
+            }else {
+                Node<Integer> tail = head;
+                while (tail.next != null){
+                    tail = tail.next;
+                }
+                tail.next = currentNode;
+            }
+            data  = s.nextInt();
+        }
+        return  head;
+    }
     public static void main(String[] args) {
-        Node<Integer> head = createLinkedList();
-        increment(head);
+        Node<Integer> head = takeInput();//createLinkedList();
+//        increment(head);
         print(head);
         System.out.println(length(head));
-        printIthNode(head,2);
+//        printIthNode(head,2);
 //        Node<Integer> n1 = new Node<>(10);
 //        System.out.println(n1);
 //        System.out.println(n1.data);
