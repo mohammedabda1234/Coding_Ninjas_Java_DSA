@@ -207,10 +207,29 @@ public class LinkedListUse {
         printReverse(root.next);
         System.out.print(root.data+" ");
     }
-
+    static Node<Integer> left=null;
+    public static boolean isPalindrome(Node<Integer> head) {
+        left=head;
+        return find(head);
+    }
+    public static boolean find(Node<Integer> right){
+        if(right==null){
+            return true;
+        }
+        boolean val=find(right.next);
+        if(val==true){
+            if(left.data==right.data){
+                left=left.next;
+                return true;
+            }
+        }
+        return false;
+    }
     public static void main(String[] args) {
         Node<Integer> head = takeInput();//createLinkedList();
         printReverse(head);
+        System.out.println(isPalindrome(head));
+
 
 //        head = insert(head,10,3);
 ////        increment(head);
