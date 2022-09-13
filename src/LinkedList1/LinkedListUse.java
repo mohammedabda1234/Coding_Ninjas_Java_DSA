@@ -119,6 +119,22 @@ public class LinkedListUse {
             temp.next=temp.next.next;
         return head;
     }
+    public static int findNode(Node<Integer> head, int n)
+    {
+        if(head==null)
+            return -1;
+        Node<Integer> temp=head;
+        int count=0;
+        while(temp!=null && temp.data!=n)
+        {
+            temp=temp.next;
+            count++;
+        }
+        if(temp!=null)
+            return count;
+        else
+            return -1;
+    }
     public static void main(String[] args) {
         Node<Integer> head = takeInput();//createLinkedList();
         head = insert(head,10,3);
@@ -126,6 +142,7 @@ public class LinkedListUse {
         print(head);
         head = deleteNode(head,0);
         print(head);
+        System.out.println(findNode(head,3));
 //        System.out.println(length(head));
 //        printIthNode(head,2);
 //        Node<Integer> n1 = new Node<>(10);
