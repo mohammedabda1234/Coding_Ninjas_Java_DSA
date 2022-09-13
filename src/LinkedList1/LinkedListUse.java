@@ -201,17 +201,26 @@ public class LinkedListUse {
         t1.next=null;
         return finalhead;
     }
+    public static void printReverse(Node<Integer> root) {
+        if(root==null)
+            return;
+        printReverse(root.next);
+        System.out.print(root.data+" ");
+    }
+
     public static void main(String[] args) {
         Node<Integer> head = takeInput();//createLinkedList();
-        head = insert(head,10,3);
-//        increment(head);
-        head = removeDuplicates(head);
-        print(head);
-        head = deleteNode(head,0);
-        print(head);
-        head = appendLastNToFirst(head,2);
-        print(head);
-        System.out.println(findNode(head,3));
+        printReverse(head);
+
+//        head = insert(head,10,3);
+////        increment(head);
+//        head = removeDuplicates(head);
+//        print(head);
+//        head = deleteNode(head,0);
+//        print(head);
+//        head = appendLastNToFirst(head,2);
+//        print(head);
+//        System.out.println(findNode(head,3));
 //        System.out.println(length(head));
 //        printIthNode(head,2);
 //        Node<Integer> n1 = new Node<>(10);
