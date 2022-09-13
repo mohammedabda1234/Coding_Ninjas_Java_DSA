@@ -99,12 +99,32 @@ public class LinkedListUse {
             }
             return head;
         }
-
+    }
+    public static Node<Integer> deleteNode(Node<Integer> head, int i)
+    {
+        if(head==null )
+            return head;
+        if(i==0)
+            return head.next;
+        int count=0;
+        Node<Integer> temp=head;
+        while(temp!=null && count<i-1)
+        {
+            temp=temp.next;
+            count++;
+        }
+        if(temp==null)
+            return head;
+        if(temp.next!=null)
+            temp.next=temp.next.next;
+        return head;
     }
     public static void main(String[] args) {
         Node<Integer> head = takeInput();//createLinkedList();
         head = insert(head,10,3);
 //        increment(head);
+        print(head);
+        head = deleteNode(head,0);
         print(head);
 //        System.out.println(length(head));
 //        printIthNode(head,2);
