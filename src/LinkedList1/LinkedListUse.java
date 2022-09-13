@@ -81,11 +81,32 @@ public class LinkedListUse {
         }
         return  head;
     }
+    public static Node<Integer>insert(Node<Integer>head,int elem,int pos){
+        Node<Integer> node = new Node<>(elem);
+        if (pos == 0){
+            node.next = head;
+            return node;
+        }else {
+            int count = 0;
+            Node<Integer> perv = head;
+            while (count < pos - 1){
+                count++;
+                perv = perv.next;
+            }
+            if (perv != null){
+                node.next = perv.next;
+                perv.next = node;
+            }
+            return head;
+        }
+
+    }
     public static void main(String[] args) {
         Node<Integer> head = takeInput();//createLinkedList();
+        head = insert(head,10,3);
 //        increment(head);
         print(head);
-        System.out.println(length(head));
+//        System.out.println(length(head));
 //        printIthNode(head,2);
 //        Node<Integer> n1 = new Node<>(10);
 //        System.out.println(n1);
