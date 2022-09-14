@@ -411,10 +411,53 @@ public class LinkedListUse {
         }
     }
 
+    public static Node<Integer> evenAfterOdd(Node<Integer> head) {
+        Node<Integer> eh=null,et=null,oh=null,ot=null;
+        while(head!=null){
+            if(head.data%2==0){
+                if(eh==null && et==null)
+                {
+                    eh=head;
+                    et=head;
+
+                }
+                else{
+                    et.next=head;
+                    et=head;
+
+                }
+                head=head.next;
+            }
+            else{
+                if(oh==null && ot==null)
+                {
+                    oh=head;
+                    ot=head;
+                }
+                else{
+                    ot.next=head;
+                    ot=head;
+                }
+                head=head.next;
+            }
+        }
+        if(oh!=null){
+            ot.next=eh;
+        }
+        else{
+            return eh;
+        }
+        if(eh!=null){
+            et.next=null;
+        }
+        return oh;
+    }
     public static void main(String[] args) {
         Node<Integer> head1 = takeInput();//createLinkedList();
-        int index = findNodeRec(head1,2);
-        System.out.println(index);
+        head1 = evenAfterOdd(head1);
+        printR(head1);
+//        int index = findNodeRec(head1,2);
+//        System.out.println(index);
 //        Node<Integer> head2 = takeInput();
 //        Node<Integer> head = merge(head1,head2);
 //        head1 = mergeSort(head1);
