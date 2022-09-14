@@ -395,12 +395,30 @@ public class LinkedListUse {
         }
         return slow;
     }
+    public static int findNodeRec(Node<Integer>head,int n){
+        return helper(head,0,n);
+    }
+
+    private static int helper(Node<Integer> head, int i, int n) {
+        if (head == null){
+            return -1;
+        }
+        if (head.data == n){
+            return i;
+        }
+        else {
+            return helper(head.next,i +1,n);
+        }
+    }
+
     public static void main(String[] args) {
         Node<Integer> head1 = takeInput();//createLinkedList();
+        int index = findNodeRec(head1,2);
+        System.out.println(index);
 //        Node<Integer> head2 = takeInput();
 //        Node<Integer> head = merge(head1,head2);
-        head1 = mergeSort(head1);
-        printR(head1);
+//        head1 = mergeSort(head1);
+//        printR(head1);
 //        head = reverse_I(head);
 //        head = midPoint(head);
 //        System.out.println(head.data);
