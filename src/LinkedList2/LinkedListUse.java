@@ -372,11 +372,35 @@ public class LinkedListUse {
         }
         return  head;
     }
+    static Node<Integer> mergeSort(Node<Integer> head)
+    {
+        if (head.next == null)
+            return head;
+
+        Node<Integer> mid = findMid(head);
+        Node<Integer> head2 = mid.next;
+        mid.next = null;
+        Node<Integer> newHead1 = mergeSort(head);
+        Node<Integer> newHead2 = mergeSort(head2);
+        Node<Integer> finalHead = merge(newHead1, newHead2);
+
+        return finalHead;
+    }
+    static Node<Integer> findMid(Node<Integer> head)
+    {
+        Node<Integer> slow = head, fast = head.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
     public static void main(String[] args) {
         Node<Integer> head1 = takeInput();//createLinkedList();
-        Node<Integer> head2 = takeInput();
-        Node<Integer> head = merge(head1,head2);
-        printR(head);
+//        Node<Integer> head2 = takeInput();
+//        Node<Integer> head = merge(head1,head2);
+        head1 = mergeSort(head1);
+        printR(head1);
 //        head = reverse_I(head);
 //        head = midPoint(head);
 //        System.out.println(head.data);
