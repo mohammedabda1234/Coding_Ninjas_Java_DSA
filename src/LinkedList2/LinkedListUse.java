@@ -313,10 +313,22 @@ public class LinkedListUse {
         ans.tail = head;
         return ans;
     }
+    public static Node<Integer> reverse_I(Node<Integer> head){
+        Node<Integer> prev=null,curr=head,temp;
+        while(curr!=null)
+        {
+            temp=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=temp;
+        }
+        return prev;
+    }
     public static void main(String[] args) {
         Node<Integer> head = takeInput();//createLinkedList();
-        DoubleNode ans =reverseRBetter(head);
-        printR(ans.head);
+        head = reverse_I(head);
+//        DoubleNode ans =reverseRBetter(head);
+        print(head);
 //        printReverse(head);
 //        System.out.println(isPalindrome(head));
 //        head = insert(head,10,3);
