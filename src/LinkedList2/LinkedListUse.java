@@ -1,7 +1,14 @@
 package LinkedList2;
-
 import java.util.Scanner;
-
+  class DoubleNode {
+     Node<Integer> head;
+     Node<Integer> tail;
+     DoubleNode() {}
+     DoubleNode(Node<Integer> head, Node<Integer> tail) {
+         this.head = head;
+         this.tail = tail;
+     }
+ }
 public class LinkedListUse {
     public static Node<Integer> createLinkedList(){
         Node<Integer> n1 = new Node<>(10);
@@ -292,10 +299,24 @@ public class LinkedListUse {
         head.next =null;
         return node;
     }
+    public static DoubleNode reverseRBetter(Node<Integer>head){
+        DoubleNode ans;
+        if (head == null ||  head.next == null){
+            ans = new DoubleNode(head,head);
+            return ans;
+        }
+        DoubleNode small = reverseRBetter(head.next);
+        small.tail.next = head;
+        head.next = null;
+        ans = new DoubleNode();
+        ans.head =small.head;
+        ans.tail = head;
+        return ans;
+    }
     public static void main(String[] args) {
         Node<Integer> head = takeInput();//createLinkedList();
-        head =reverseR(head);
-        printR(head);
+        DoubleNode ans =reverseRBetter(head);
+        printR(ans.head);
 //        printReverse(head);
 //        System.out.println(isPalindrome(head));
 //        head = insert(head,10,3);
