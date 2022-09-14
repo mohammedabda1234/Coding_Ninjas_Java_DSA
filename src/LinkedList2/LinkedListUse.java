@@ -265,11 +265,24 @@ public class LinkedListUse {
             return head;
         }
     }
+    static Node<Integer> reverse(Node<Integer> head) {
+        if(head == null) {
+            return head;
+        }
+        if(head.next == null) {
+            return head;
+        }
+
+        Node<Integer> newHeadNode = reverse(head.next);
+        // change references for middle chain
+        head.next.next = head;
+        head.next = null;
+        // send back new head node in every recursion
+        return newHeadNode;
+    }
     public static void main(String[] args) {
         Node<Integer> head = takeInput();//createLinkedList();
-        head =insertR(head,10,2);
-        printR(head);
-        head =deleteR(head,10);
+        head =reverse(head);
         printR(head);
 //        printReverse(head);
 //        System.out.println(isPalindrome(head));
