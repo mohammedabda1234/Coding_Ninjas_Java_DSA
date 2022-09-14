@@ -254,9 +254,22 @@ public class LinkedListUse {
             return head;
         }
     }
+    public static Node<Integer> deleteR(Node<Integer>head,int pos){
+        if (head == null && pos > 0){
+            return head;
+        }
+        if (pos == 0){
+            return head.next;
+        }else {
+            head.next = deleteR(head.next,pos -1);
+            return head;
+        }
+    }
     public static void main(String[] args) {
         Node<Integer> head = takeInput();//createLinkedList();
         head =insertR(head,10,2);
+        printR(head);
+        head =deleteR(head,10);
         printR(head);
 //        printReverse(head);
 //        System.out.println(isPalindrome(head));
