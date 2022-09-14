@@ -452,9 +452,38 @@ public class LinkedListUse {
         }
         return oh;
     }
+
+    public static Node<Integer> skipMdeleteN(Node<Integer> head, int M, int N) {
+        if(head==null)
+            return head;
+        if(M==0)
+            return null;
+        if(N==0)
+            return head;
+        Node<Integer> curr=head,t;
+        int count;
+        while(curr!=null)
+        {
+            for(count=1;count<M && curr!=null;count++)
+            {
+                curr=curr.next;
+            }
+            if(curr==null)
+                return head;
+            t=curr.next;
+            for(count=1;count<=N && t!=null;count++)
+            {
+                t=t.next;
+            }
+            curr.next=t;
+            curr=t;}
+        return head;
+
+    }
     public static void main(String[] args) {
         Node<Integer> head1 = takeInput();//createLinkedList();
-        head1 = evenAfterOdd(head1);
+        head1 = skipMdeleteN(head1,2,4);
+//        head1 = evenAfterOdd(head1);
         printR(head1);
 //        int index = findNodeRec(head1,2);
 //        System.out.println(index);
