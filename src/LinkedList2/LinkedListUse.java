@@ -324,11 +324,26 @@ public class LinkedListUse {
         }
         return prev;
     }
+
+    public static Node<Integer> midPoint(Node<Integer>head){
+        if (head == null || head.next == null){
+            return head;
+        }
+            Node<Integer> fast = head,slow = head;
+            while (fast.next != null && fast.next.next != null){
+                slow = slow.next;
+                fast = fast.next.next;
+
+        }
+        return slow;
+    }
     public static void main(String[] args) {
         Node<Integer> head = takeInput();//createLinkedList();
-        head = reverse_I(head);
+//        head = reverse_I(head);
+        head = midPoint(head);
+        System.out.println(head.data);
 //        DoubleNode ans =reverseRBetter(head);
-        print(head);
+//        printR(head);
 //        printReverse(head);
 //        System.out.println(isPalindrome(head));
 //        head = insert(head,10,3);
