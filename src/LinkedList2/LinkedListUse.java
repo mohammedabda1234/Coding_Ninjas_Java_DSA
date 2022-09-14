@@ -229,8 +229,8 @@ public class LinkedListUse {
        if (head == null){
            return;
        }
-       printR(head.next);
         System.out.print(head.data+" ");
+        printR(head.next);
     }
     public static void printRR(Node<Integer>head){
         if (head == null){
@@ -239,9 +239,25 @@ public class LinkedListUse {
         printR(head.next);
         System.out.print(head.data+" ");
     }
+    public static Node<Integer>insertR(Node<Integer>head,int elem,int pos){
+        if (head == null && pos > 0){
+            return head;
+        }
+        if (pos == 0){
+            Node<Integer> node = new Node<>(elem);
+            node.next = head;
+            return node;
+        }else {
+//            Node<Integer> smallerHead = insertR(head.next,elem,pos -1);
+//            head.next =smallerHead;
+            head.next = insertR(head.next,elem,pos -1);
+            return head;
+        }
+    }
     public static void main(String[] args) {
         Node<Integer> head = takeInput();//createLinkedList();
-        printRR(head);
+        head =insertR(head,10,2);
+        printR(head);
 //        printReverse(head);
 //        System.out.println(isPalindrome(head));
 //        head = insert(head,10,3);
