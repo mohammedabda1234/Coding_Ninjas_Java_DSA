@@ -226,15 +226,22 @@ public class LinkedListUse {
         return false;
     }
     public static void printR(Node<Integer>head){
+       if (head == null){
+           return;
+       }
+       printR(head.next);
+        System.out.print(head.data+" ");
+    }
+    public static void printRR(Node<Integer>head){
         if (head == null){
             return;
         }
-        System.out.print(head.data+" ");
         printR(head.next);
+        System.out.print(head.data+" ");
     }
     public static void main(String[] args) {
         Node<Integer> head = takeInput();//createLinkedList();
-        printR(head);
+        printRR(head);
 //        printReverse(head);
 //        System.out.println(isPalindrome(head));
 //        head = insert(head,10,3);
