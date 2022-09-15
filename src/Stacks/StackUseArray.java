@@ -6,7 +6,11 @@ public class StackUseArray {
     private int index;
 
     public StackUseArray(){
-        data = new int[10];
+        data = new int[2];
+        index = -1;
+    }
+    public StackUseArray(int size){
+        data = new int[size];
         index = -1;
     }
     //O(1)
@@ -21,10 +25,21 @@ public class StackUseArray {
     public void push(int elem){
         if (index == data.length -1){
             //throw error
-            System.out.println("Stack is full");
+//            System.out.println("Stack is full");
+            doubleCapacity();
         }
         data[++index] = elem;
     }
+
+    private void doubleCapacity() {
+        System.out.println("double capacity");
+        int[] temp = data;
+        data = new int[2 * temp.length];
+        for (int i = 0; i < temp.length; i++) {
+            data[i] = temp[i];
+        }
+    }
+
     //O(1)
     public int top(){
         if (index == -1){
