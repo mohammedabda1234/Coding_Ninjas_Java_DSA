@@ -24,8 +24,9 @@ public class QueuesUsingArray {
     }
     public void enqueue(int elem){
         if (size == data.length){
-            System.out.println("queue is full");
-            return;
+            doubleCapacity();
+//            System.out.println("queue is full");
+//            return;
         }
         if (size == 0){
             front = 0;
@@ -38,6 +39,22 @@ public class QueuesUsingArray {
         data[rear] = elem;
         size++;
     }
+
+    private void doubleCapacity() {
+        System.out.println("double capacity");
+        int[] temp = data;
+        data = new int[2 * temp.length];
+        int index = 0;
+        for(int i = front;i<temp.length;i++ ){
+            data[index++] = temp[i];
+        }
+        for (int i = 0; i < front -1; i++) {
+            data[index++] = temp[i];
+        }
+        front = 0;
+        rear = temp.length - 1;
+    }
+
     public int front(){
         if (size == 0){
             return -1;
