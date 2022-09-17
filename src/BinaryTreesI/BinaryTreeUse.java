@@ -102,10 +102,22 @@ public class BinaryTreeUse {
         postOrder(root.right);
         System.out.print(root.data+" ");
     }
+
+    public static int largest(BinaryTreeNode<Integer>root){
+        if (root == null){
+            return -1;
+        }
+        int left = largest(root.left);
+        int right = largest(root.right);
+        return Math.max(root.data,Math.max(left,right));
+    }
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
         preOrder(root);
+        System.out.println();
         postOrder(root);
+        System.out.println();
+        System.out.println("largest "+largest(root));
 //        int result = numNode(root);
 //        System.out.println(result);
 //        int sum = getSum(root);
