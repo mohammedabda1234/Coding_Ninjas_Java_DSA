@@ -111,6 +111,16 @@ public class BinaryTreeUse {
         int right = largest(root.right);
         return Math.max(root.data,Math.max(left,right));
     }
+    public static int countNodesGreaterThanX(BinaryTreeNode<Integer> root, int x) {
+        if (root == null) {
+            return 0;
+        }
+
+        int countLeft = countNodesGreaterThanX(root.left, x);
+        int countRight = countNodesGreaterThanX(root.right, x);
+
+        return (root.data > x ? 1 : 0) + countLeft + countRight;
+    }
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
         preOrder(root);
