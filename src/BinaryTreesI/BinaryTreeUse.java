@@ -188,6 +188,19 @@ public class BinaryTreeUse {
         boolean res2 = ifNodeExists(root.right, key);
         return res2;
     }
+    public static void withoutSibling(BinaryTreeNode<Integer>root){
+        if (root == null){
+            return;
+        }
+        if (root.left != null && root.right != null){
+            System.out.print(root.left.data+" ");
+            withoutSibling(root.left);
+        }
+        if (root.left != null && root.right != null){
+            System.out.print(root.right.data+" ");
+            withoutSibling(root.right);
+        }
+    }
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
         preOrder(root);
@@ -200,6 +213,8 @@ public class BinaryTreeUse {
         System.out.println("print depth k ");
         depthK(root,2);
         System.out.println("is node present "+ifNodeExists(root,2));
+        System.out.println("Nodes Without Sibling ");
+        withoutSibling(root);
 //        int result = numNode(root);
 //        System.out.println(result);
 //        int sum = getSum(root);
