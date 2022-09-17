@@ -151,6 +151,29 @@ public class BinaryTreeUse {
         depthK(root.left,k - 1);
         depthK(root.right,k - 1);
     }
+    public static void changeToDepthTree(BinaryTreeNode<Integer> root) {
+        helper(root,0);
+    }
+
+    public static BinaryTreeNode<Integer> helper(BinaryTreeNode<Integer> root, int depth)
+    {
+        if(root==null)
+        {
+            return null;
+        }
+
+        root.data=depth;
+        if(root.left!=null)
+        {
+            helper(root.left,depth+1);
+        }
+        if(root.right!=null)
+        {
+            helper(root.right,depth+1);
+        }
+        return root;
+    }
+
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
         preOrder(root);
