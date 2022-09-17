@@ -1,6 +1,24 @@
 package BinaryTreesI;
 
 public class BinaryTreeUse {
+
+    public static void printTreeDetailed(BinaryTreeNode<Integer>root) {
+        if (root == null) {
+            return;
+        }
+        System.out.print(root.data+" -->");
+        if (root.left != null){
+            System.out.print(" L "+root.left.data+" , ");
+        }
+        if (root.right != null){
+            System.out.print(" R "+root.right.data);
+        }
+        System.out.println();
+
+        printTreeDetailed(root.left);
+        printTreeDetailed(root.right);
+    }
+
     public static void printTree(BinaryTreeNode<Integer>root){
         if (root == null){
             return;
@@ -22,11 +40,11 @@ public class BinaryTreeUse {
         BinaryTreeNode<Integer> rootRight = new BinaryTreeNode<>(3);
         root.left = rootLeft;
         root.right = rootRight;
-        printTree(root);
 
-//        BinaryTreeNode<Integer> twoRight = new BinaryTreeNode<>(4);
-//        BinaryTreeNode<Integer> threeLeft = new BinaryTreeNode<>(5);
-//        rootLeft.right = twoRight;
-//        rootRight.left = threeLeft;
+        BinaryTreeNode<Integer> twoRight = new BinaryTreeNode<>(4);
+        BinaryTreeNode<Integer> threeLeft = new BinaryTreeNode<>(5);
+        rootLeft.right = twoRight;
+        rootRight.left = threeLeft;
+        printTreeDetailed(root);
     }
 }
