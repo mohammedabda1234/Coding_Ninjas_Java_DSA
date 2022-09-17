@@ -49,8 +49,32 @@ public class BinaryTreeUse {
         root.right = rightChild;
         return  root;
     }
+
+    public static BinaryTreeNode<Integer>takeInputTreeBetter(boolean isRoot,int parentData,boolean isLeft){
+       if (isRoot) {
+           System.out.println("Enter root Data ");
+       }else {
+           if (isLeft){
+               System.out.println("Enter left child of "+parentData);
+           }else {
+               System.out.println("Enter right child of "+parentData);
+           }
+       }
+        Scanner sc = new Scanner(System.in);
+        int rootData = sc.nextInt();
+        if (rootData == -1){
+            return null;
+        }
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<>(rootData);
+        BinaryTreeNode<Integer>  leftChild = takeInputTreeBetter(false,rootData,true);
+        BinaryTreeNode<Integer> rightChild = takeInputTreeBetter(false,rootData,false);
+        root.left = leftChild;
+        root.right = rightChild;
+        return  root;
+    }
+
     public static void main(String[] args) {
-        BinaryTreeNode<Integer> root = takeInputTree();
+        BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
         printTreeDetailed(root);
     }
 }
