@@ -72,9 +72,18 @@ public class BinaryTreeUse {
         root.right = rightChild;
         return  root;
     }
-
+    public static int numNode(BinaryTreeNode<Integer>root){
+        if (root == null){
+            return  0;
+        }
+        int left = numNode(root.left);
+        int right  = numNode(root.right);
+        return 1 +left+right;
+    }
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
         printTreeDetailed(root);
+        int result = numNode(root);
+        System.out.println(result);
     }
 }
