@@ -121,6 +121,14 @@ public class BinaryTreeUse {
 
         return (root.data > x ? 1 : 0) + countLeft + countRight;
     }
+    public static int highest(BinaryTreeNode<Integer>root){
+        if (root == null){
+            return 0;
+        }
+        int left = highest(root.left);
+        int right = highest(root.right);
+        return 1+Math.max(left,right);
+    }
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
         preOrder(root);
@@ -128,6 +136,7 @@ public class BinaryTreeUse {
         postOrder(root);
         System.out.println();
         System.out.println("largest "+largest(root));
+        System.out.println("highest "+highest(root));
 //        int result = numNode(root);
 //        System.out.println(result);
 //        int sum = getSum(root);
