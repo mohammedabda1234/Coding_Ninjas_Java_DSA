@@ -139,6 +139,18 @@ public class BinaryTreeUse {
         }
         return numLeaves(root.left) + numLeaves(root.right);
     }
+
+    public static void depthK(BinaryTreeNode<Integer>root,int k){
+        if (root == null){
+            return;
+        }
+        if (k == 0){
+            System.out.print(root.data+" ");
+            return;
+        }
+        depthK(root.left,k - 1);
+        depthK(root.right,k - 1);
+    }
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
         preOrder(root);
@@ -148,6 +160,8 @@ public class BinaryTreeUse {
         System.out.println("largest "+largest(root));
         System.out.println("highest "+highest(root));
         System.out.println("number of leaves "+numLeaves(root));
+        System.out.println("print depth k ");
+        depthK(root,2);
 //        int result = numNode(root);
 //        System.out.println(result);
 //        int sum = getSum(root);
