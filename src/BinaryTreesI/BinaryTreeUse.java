@@ -80,10 +80,26 @@ public class BinaryTreeUse {
         int right  = numNode(root.right);
         return 1 +left+right;
     }
+    public static int getSum(BinaryTreeNode<Integer>root){
+        if(root == null){
+            return 0;
+        }
+        return (root.data + getSum(root.left)+getSum(root.right));
+    }
+    public static void preOrder(BinaryTreeNode<Integer>root){
+        if (root == null){// order of per order(root,left,right)
+            return;
+        }
+        System.out.print(root.data+" ");
+        preOrder(root.left);
+        preOrder(root.right);
+    }
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
-        printTreeDetailed(root);
-        int result = numNode(root);
-        System.out.println(result);
+        preOrder(root);
+//        int result = numNode(root);
+//        System.out.println(result);
+//        int sum = getSum(root);
+//        System.out.println(sum);
     }
 }
