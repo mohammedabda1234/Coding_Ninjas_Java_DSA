@@ -94,9 +94,18 @@ public class BinaryTreeUse {
         preOrder(root.left);
         preOrder(root.right);
     }
+    public static void postOrder(BinaryTreeNode<Integer>root){
+        if (root == null){//postorder (left right root)
+            return;
+        }
+        postOrder(root.left);
+        postOrder(root.right);
+        System.out.print(root.data+" ");
+    }
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
         preOrder(root);
+        postOrder(root);
 //        int result = numNode(root);
 //        System.out.println(result);
 //        int sum = getSum(root);
