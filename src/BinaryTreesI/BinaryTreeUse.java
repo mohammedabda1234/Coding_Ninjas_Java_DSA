@@ -174,6 +174,20 @@ public class BinaryTreeUse {
         return root;
     }
 
+    static boolean ifNodeExists(BinaryTreeNode<Integer> root, int key){
+        if (root == null)
+            return false;
+        if (root.data == key)
+            return true;
+        // then recur on left subtree /
+        boolean res1 = ifNodeExists(root.left, key);
+        // node found, no need to look further
+        if(res1) return true;
+        // node is not found in left,
+        // so recur on right subtree /
+        boolean res2 = ifNodeExists(root.right, key);
+        return res2;
+    }
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
         preOrder(root);
@@ -185,6 +199,7 @@ public class BinaryTreeUse {
         System.out.println("number of leaves "+numLeaves(root));
         System.out.println("print depth k ");
         depthK(root,2);
+        System.out.println("is node present "+ifNodeExists(root,2));
 //        int result = numNode(root);
 //        System.out.println(result);
 //        int sum = getSum(root);
