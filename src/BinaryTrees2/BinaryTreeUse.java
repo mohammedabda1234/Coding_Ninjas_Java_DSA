@@ -362,18 +362,57 @@ public class BinaryTreeUse {
             System.out.println();
         }
     }
+    public static BinaryTreeNode<Integer>buildTreeFromPerInHelper(int[] per,int[] in,int siPer,int eidPer,int siIn,int eiIn){
+        if (siPer > eidPer){
+            return null;
+        }
+        int rootData = per[siPer];
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<>(rootData);
+
+        int  rootIndex = -1;
+        for (int i = siIn ;i <= eiIn ; i++){
+            if (in[i] == rootData){
+                rootIndex = i;
+                break;
+            }
+        }
+
+
+        int siPreLeft = siPer +1;
+        int siInLeft = siIn;
+        int eiInLeft = rootIndex - 1;
+        int eiPreRight = eidPer;
+        int siInRight = rootIndex + 1;
+        int eiInRight = eiIn;
+
+        int leftSubTreeLenght = eiInLeft - siInLeft + 1;
+        int eiPreLeft = siPreLeft + leftSubTreeLenght - 1;
+        int siPreRight = eiPreLeft + 1;
+
+        BinaryTreeNode<Integer> left = buildTreeFromPerInHelper(per,in,siPreLeft,eiPreLeft,siInLeft,eiInLeft);
+        BinaryTreeNode<Integer> right = buildTreeFromPerInHelper(per,in,siPreRight,eiPreRight,siInRight,eiInRight);
+        return root;
+    }
+    public static BinaryTreeNode<Integer>buildTreeFromPerIn(int[] per,int[] in){
+        BinaryTreeNode<Integer> root = buildTreeFromPerInHelper(per,in,0,per.length -1,0,in.length -1);
+        return root;
+    }
+
 
     public static void main(String[] args) {
 //        BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
-        BinaryTreeNode<Integer> root = takeInputLevelWise();
-        printTreeDetailed(root);
-        System.out.println("largest "+largest(root));
-        System.out.println("highest "+highest(root));
-        System.out.println("number of leaves "+numLeaves(root));
-        System.out.println(" is balanced present "+isBalanced(root));
-        System.out.println(" is balanced present "+isBalancedBetter(root).isBalanced);
+//        BinaryTreeNode<Integer> root = takeInputLevelWise();
+//        printTreeDetailed(root);
+//        System.out.println("largest "+largest(root));
+//        System.out.println("highest "+highest(root));
+//        System.out.println("number of leaves "+numLeaves(root));
+//        System.out.println(" is balanced present "+isBalanced(root));
+//        System.out.println(" is balanced present "+isBalancedBetter(root).isBalanced);
+//        printTreeDetailed(root);
 
-        printTreeDetailed(root);
-
+        int[] in = {4,2,5,1,3};
+        int[] pre = {1,2,4,5,3};
+        BinaryTreeNode<Integer> root = buildTreeFromPerIn(pre,in);
+        printTree(root);
     }
 }
