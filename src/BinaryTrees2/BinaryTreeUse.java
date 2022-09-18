@@ -1,5 +1,7 @@
 package BinaryTrees2;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class BinaryTreeUse {
@@ -297,8 +299,39 @@ public class BinaryTreeUse {
         return 1 + Math.max(lheight + rheight,
                 Math.max(ldiameter, rdiameter));
     }
+    public static BinaryTreeNode<Integer>takeInputLevelWise(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter root data");
+        int rootData = sc.nextInt();
+        if (rootData == -1){
+            return null;
+        }
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<>(rootData);
+        Queue<BinaryTreeNode<Integer>> pending = new LinkedList<>();
+        pending.add(root);
+        while (!pending.isEmpty()){
+            BinaryTreeNode<Integer> front = pending.poll();
+            System.out.println("Enter left data of "+front.data);
+            int left = sc.nextInt();
+            if (left != -1){
+                BinaryTreeNode<Integer> leftChild = new BinaryTreeNode<>(left);
+                front.left = leftChild;
+                pending.add(leftChild);
+            }
+
+            System.out.println("Enter right data of "+front.data);
+            int right = sc.nextInt();
+            if (right != -1){
+                BinaryTreeNode<Integer> rightChild = new BinaryTreeNode<>(right);
+                front.left = rightChild;
+                pending.add(rightChild);
+            }
+        }
+        return root;
+    }
     public static void main(String[] args) {
-        BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
+//        BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
+        BinaryTreeNode<Integer> root = takeInputLevelWise();
         System.out.println("largest "+largest(root));
         System.out.println("highest "+highest(root));
         System.out.println("number of leaves "+numLeaves(root));
