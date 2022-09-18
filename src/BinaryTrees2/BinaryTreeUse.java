@@ -281,6 +281,22 @@ public class BinaryTreeUse {
         return ans;
     }
 
+    public static int diameterOfBinaryTree(BinaryTreeNode<Integer> root){
+
+        if (root == null)
+            return 0;
+
+        // get the height of left and right sub-trees
+        int lheight = hight(root.left);
+        int rheight = hight(root.right);
+
+        // get the diameter of left and right sub-trees
+        int ldiameter = diameterOfBinaryTree(root.left);
+        int rdiameter = diameterOfBinaryTree(root.right);
+
+        return 1 + Math.max(lheight + rheight,
+                Math.max(ldiameter, rdiameter));
+    }
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
         System.out.println("largest "+largest(root));
