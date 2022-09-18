@@ -212,6 +212,29 @@ public class BinaryTreeUse {
         root.right = removeLeaves(root.right);
         return root;
     }
+    public static void mirrorBinaryTree(BinaryTreeNode<Integer> root){
+
+        if (root == null) {
+            return;
+        }
+
+        // We will do a post-order traversal of the binary tree.
+
+        if (root.left != null) {
+            mirrorBinaryTree(root.left);
+        }
+
+        if (root.right != null) {
+            mirrorBinaryTree(root.right);
+        }
+
+        // Let's swap the left and right nodes at current level.
+
+        BinaryTreeNode<Integer> temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+    }
+
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
         System.out.println("largest "+largest(root));
@@ -219,6 +242,9 @@ public class BinaryTreeUse {
         System.out.println("number of leaves "+numLeaves(root));
         System.out.println("print depth k ");
         depthK(root,2);
+        System.out.println("mirror of tree");
+        mirrorBinaryTree(root);
+        printTreeDetailed(root);
         BinaryTreeNode<Integer> newRoot = removeLeaves(root);
         printTreeDetailed(newRoot);
 //        int result = numNode(root);
