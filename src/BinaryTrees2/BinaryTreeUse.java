@@ -201,20 +201,26 @@ public class BinaryTreeUse {
             withoutSibling(root.right);
         }
     }
+    public static BinaryTreeNode<Integer>removeLeaves(BinaryTreeNode<Integer>root){
+        if (root == null){
+            return null;
+        }
+        if (root.left == null && root.right == null){
+            return null;
+        }
+        root.left = removeLeaves(root.left);
+        root.right = removeLeaves(root.right);
+        return root;
+    }
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
-        preOrder(root);
-        System.out.println();
-        postOrder(root);
-        System.out.println();
         System.out.println("largest "+largest(root));
         System.out.println("highest "+highest(root));
         System.out.println("number of leaves "+numLeaves(root));
         System.out.println("print depth k ");
         depthK(root,2);
-        System.out.println("is node present "+ifNodeExists(root,2));
-        System.out.println("Nodes Without Sibling ");
-        withoutSibling(root);
+        BinaryTreeNode<Integer> newRoot = removeLeaves(root);
+        printTreeDetailed(newRoot);
 //        int result = numNode(root);
 //        System.out.println(result);
 //        int sum = getSum(root);
