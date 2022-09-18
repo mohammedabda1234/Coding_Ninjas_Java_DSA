@@ -255,6 +255,31 @@ public class BinaryTreeUse {
         boolean isRight = isBalanced(root.right);
         return isRight && isRight;
     }
+    public static BalancedTreeReturn isBalancedBetter(BinaryTreeNode<Integer>root){
+        if (root == null){
+            int height = 0;
+            boolean isBal = true;
+            BalancedTreeReturn ans = new BalancedTreeReturn();
+            ans.height = height;
+            ans.isBalanced = isBal;
+            return ans;
+        }
+        BalancedTreeReturn left = isBalancedBetter(root.left);
+        BalancedTreeReturn right = isBalancedBetter(root.right);
+        boolean isBal = true;
+
+        int height = 1 + Math.max(left.height,right.height);
+        if (Math.abs(left.height - right.height) > 1){
+            isBal = false;
+        }
+        if (!left.isBalanced || !right.isBalanced){
+            isBal = false;
+        }
+        BalancedTreeReturn ans = new BalancedTreeReturn();
+        ans.height = height;
+        ans.isBalanced = isBal;
+        return ans;
+    }
 
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
@@ -262,6 +287,8 @@ public class BinaryTreeUse {
         System.out.println("highest "+highest(root));
         System.out.println("number of leaves "+numLeaves(root));
         System.out.println(" is balanced present "+isBalanced(root));
+        System.out.println(" is balanced present "+isBalancedBetter(root).isBalanced);
+
         printTreeDetailed(root);
 
     }
