@@ -174,13 +174,25 @@ public class BST {
         IsBSTReturn ans  = new IsBSTReturn(min,max,isBST);
         return ans;
     }
+    public static boolean isBSTThree(BinaryTreeNode<Integer> root,int min,int max){
+        if(root == null){
+            return true;
+        }
+        if (root.data < min || root.data > max){
+            return false;
+        }
+        boolean isLeft = isBSTThree(root.left,min, root.data -1);
+        boolean isRight = isBSTThree(root.right, root.data,max);
+        return isLeft&&isRight;
+    }
     public static void main(String[] args) {
         int[] arr = {10,20,30,40,50,60,70,80,90};
         BinaryTreeNode<Integer> root = arrayToBST(arr,0,arr.length -1);
+        System.out.println(isBSTThree(root,10,90));
         printTreeDetailed(root);
-        IsBSTReturn ans = isBSTBetter(root);
-        System.out.println(ans.min+" "+ans.max+" "+ans.isBST);
-//        System.out.println(isBST1(root));
+//        IsBSTReturn ans = isBSTBetter(root);
+//        System.out.println(ans.min+" "+ans.max+" "+ans.isBST);
+////        System.out.println(isBST1(root));
 //        BinaryTreeNode<Integer> root = takeInputTreeBetter(true,0,false);
 //        printTreeDetailed(root);
 //        System.out.println(searchBST(root,3));
