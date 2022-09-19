@@ -497,6 +497,38 @@ public class BinaryTreeUse {
         getMinAndMaxHelper(root.left);
         getMinAndMaxHelper(root.right);
     }
+    public static void printLevelWise1(BinaryTreeNode<Integer> root) {
+
+        if (root==null)
+            return;
+
+        Queue<BinaryTreeNode<Integer>> nodesToPrint = new LinkedList<BinaryTreeNode<Integer>>();
+        nodesToPrint.add(root);
+        nodesToPrint.add(null);
+        while(!nodesToPrint.isEmpty())
+        {
+            BinaryTreeNode<Integer> front=nodesToPrint.poll();
+            if (front==null)
+            {
+                if (nodesToPrint.isEmpty())
+                    break;
+                else
+                {
+                    System.out.println();
+                    nodesToPrint.add(null);
+                }
+
+            }
+            else
+            {
+                System.out.print(front.data+" ");
+                if (front.left!=null)
+                    nodesToPrint.add(front.left);
+                if (front.right!=null)
+                    nodesToPrint.add(front.right);
+            }
+        }
+    }
     public static void main(String[] args) {
 //        BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
 //        BinaryTreeNode<Integer> root = takeInputLevelWise();
