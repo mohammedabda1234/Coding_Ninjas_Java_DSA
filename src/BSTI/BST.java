@@ -147,11 +147,40 @@ public class BST {
         int rightMan = maximum1(root.right);
         return  Math.max(root.data,Math.max(leftMan,rightMan));
     }
+    public static IsBSTReturn isBSTBetter(BinaryTreeNode<Integer>root){
+        if (root == null){
+            IsBSTReturn ans = new IsBSTReturn(Integer.MAX_VALUE,Integer.MIN_VALUE,true);
+            return ans;
+        }
+        IsBSTReturn left = isBSTBetter(root.left);
+        IsBSTReturn right = isBSTBetter(root.right);
+
+        int min = Math.min(root.data, Math.min(left.min,right.min));
+        int max = Math.max(root.data, Math.max(left.max, right.max));
+
+        boolean isBST = true;
+        if (left.max >= root.data){
+            isBST = false;
+        }
+        if (right.min < root.data){
+            isBST = false;
+        }
+        if (!left.isBST){
+            isBST = false;
+        }
+        if (!right.isBST){
+            isBST = false;
+        }
+        IsBSTReturn ans  = new IsBSTReturn(min,max,isBST);
+        return ans;
+    }
     public static void main(String[] args) {
         int[] arr = {10,20,30,40,50,60,70,80,90};
         BinaryTreeNode<Integer> root = arrayToBST(arr,0,arr.length -1);
         printTreeDetailed(root);
-        System.out.println(isBST1(root));
+        IsBSTReturn ans = isBSTBetter(root);
+        System.out.println(ans.min+" "+ans.max+" "+ans.isBST);
+//        System.out.println(isBST1(root));
 //        BinaryTreeNode<Integer> root = takeInputTreeBetter(true,0,false);
 //        printTreeDetailed(root);
 //        System.out.println(searchBST(root,3));
