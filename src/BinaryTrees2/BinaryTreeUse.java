@@ -153,7 +153,8 @@ public class BinaryTreeUse {
         depthK(root.left,k - 1);
         depthK(root.right,k - 1);
     }
-    public static void changeToDepthTree(BinaryTreeNode<Integer> root) {
+    public static void changeToDepthTree(BinaryTreeNode<Integer> root)
+    {
         helper(root,0);
     }
 
