@@ -103,10 +103,22 @@ public class BST {
             return false;
         }
     }
-
+    public static BinaryTreeNode<Integer> arrayToBST(int[] arr,int start,int end){
+        if (start > end){
+            return null;
+        }
+        int mid = (start + end) / 2;
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<>(arr[mid]);
+        root.left = arrayToBST(arr,start,mid -1);
+        root.right = arrayToBST(arr,mid + 1,end);
+        return root;
+    }
     public static void main(String[] args) {
-        BinaryTreeNode<Integer> root = takeInputTreeBetter(true,0,false);
+        int[] arr = {10,20,30,40,50,60,70,80,90};
+        BinaryTreeNode<Integer> root = arrayToBST(arr,0,arr.length -1);
         printTreeDetailed(root);
-        System.out.println(searchBST(root,3));
+//        BinaryTreeNode<Integer> root = takeInputTreeBetter(true,0,false);
+//        printTreeDetailed(root);
+//        System.out.println(searchBST(root,3));
     }
 }
