@@ -53,6 +53,21 @@ public class BST {
         }
         return searchBST(root.right,data);
     }
+
+    public static void printBtnK1AndK2(BinaryTreeNode<Integer>root,int k1,int k2){
+        if (root == null){
+            return;
+        }
+        if (root.data < k1){
+            printBtnK1AndK2(root.right,k1,k2);
+        } else if (root.data > k2) {
+            printBtnK1AndK2(root.left,k1,k2);
+        }else {
+            System.out.println(root.data);
+            printBtnK1AndK2(root.left,k1,k2);
+            printBtnK1AndK2(root.right,k1,k2);
+        }
+    }
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,0,false);
         printTreeDetailed(root);
