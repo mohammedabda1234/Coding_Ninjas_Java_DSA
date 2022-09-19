@@ -103,6 +103,7 @@ public class BST {
             return false;
         }
     }
+
     public static void main(String[] args) {
         BinaryTreeNode<Integer> root = takeInputTreeBetter(true,0,false);
         printTreeDetailed(root);
