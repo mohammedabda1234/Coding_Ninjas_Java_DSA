@@ -453,6 +453,19 @@ public class BinaryTreeUse {
         root.right=rightChild;
         return root;
     }
+    public static void insertDuplicateNode(BinaryTreeNode<Integer> root) {
+        if (root==null)
+            return;
+
+        BinaryTreeNode<Integer> duplicateNode = new BinaryTreeNode<Integer>(root.data);
+        //duplicateNode.data=root.data;
+        BinaryTreeNode<Integer> temp=root.left;
+        root.left=duplicateNode;
+        duplicateNode.left=temp;
+        insertDuplicateNode(root.left.left);
+        insertDuplicateNode(root.right);
+
+    }
     public static void main(String[] args) {
 //        BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
 //        BinaryTreeNode<Integer> root = takeInputLevelWise();
