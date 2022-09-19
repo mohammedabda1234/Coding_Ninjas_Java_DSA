@@ -466,6 +466,37 @@ public class BinaryTreeUse {
         insertDuplicateNode(root.right);
 
     }
+    private static Pair<Integer,Integer> maxMin=new Pair<Integer,Integer>(Integer.MAX_VALUE,Integer.MIN_VALUE);
+    public static Pair<Integer, Integer> getMinAndMax(BinaryTreeNode<Integer> root) {
+
+        getMinAndMaxHelper(root);
+        return maxMin;
+
+
+    }
+
+    private static void getMinAndMaxHelper(BinaryTreeNode<Integer> root)
+    {
+        if (root==null)
+        {
+            return;
+        }
+
+        int rootData=root.data;
+        int maxVal=maxMin.maximum;
+        if (rootData>maxVal)
+        {
+            maxMin.maximum=root.data;
+        }
+
+        int minVal=maxMin.minimum;
+        if (rootData<minVal)
+        {
+            maxMin.minimum=root.data;
+        }
+        getMinAndMaxHelper(root.left);
+        getMinAndMaxHelper(root.right);
+    }
     public static void main(String[] args) {
 //        BinaryTreeNode<Integer> root = takeInputTreeBetter(true,1,false);
 //        BinaryTreeNode<Integer> root = takeInputLevelWise();
