@@ -1,5 +1,6 @@
 package BSTI;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BST {
@@ -185,11 +186,46 @@ public class BST {
         boolean isRight = isBSTThree(root.right, root.data,max);
         return isLeft&&isRight;
     }
+    public static ArrayList<Integer>rootToPath(BinaryTreeNode<Integer>root,int x){
+        if (root == null){
+            return null;
+        }
+        if (root.data == x){
+            ArrayList<Integer> output = new ArrayList<>();
+            output.add(root.data);
+            return output;
+        }
+        ArrayList<Integer> left = rootToPath(root.left,x);
+        if (left != null){
+            left.add(root.data);
+            return left;
+        }
+        ArrayList<Integer> right = rootToPath(root.right,x);
+        if (right != null){
+            right.add(root.data);
+            return right;
+        }
+        return null;
+    }
     public static void main(String[] args) {
-        int[] arr = {10,20,30,40,50,60,70,80,90};
-        BinaryTreeNode<Integer> root = arrayToBST(arr,0,arr.length -1);
-        System.out.println(isBSTThree(root,10,90));
-        printTreeDetailed(root);
+//        int[] arr = {10,20,30,40,50,60,70,80,90};
+//        BinaryTreeNode<Integer> root = arrayToBST(arr,0,arr.length -1);
+//        System.out.println(isBSTThree(root,10,90));
+//
+        BinaryTreeNode<Integer> root  = takeInputTreeBetter(true,0,true);
+        ArrayList<Integer> ans = rootToPath(root,5);
+        if (ans == null){
+            System.out.println("path not found");
+        }else {
+            for (int i : ans) {
+                System.out.println(i);
+            }
+
+        }
+//        int[] arr = {10,20,30,40,50,60,70,80,90};
+//        BinaryTreeNode<Integer> root = arrayToBST(arr,0,arr.length -1);
+//        System.out.println(isBSTThree(root,10,90));
+//        printTreeDetailed(root);
 //        IsBSTReturn ans = isBSTBetter(root);
 //        System.out.println(ans.min+" "+ans.max+" "+ans.isBST);
 ////        System.out.println(isBST1(root));
