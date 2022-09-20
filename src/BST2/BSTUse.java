@@ -12,7 +12,13 @@ public class BSTUse {
         b.insert(8);
         b.printTree();
         System.out.println(b.isPresent(5));
+        b.deleteData(5);
         System.out.println(b.size());
-
+        b.printTree();
+        System.out.println(b.isPresent(5));
+        b.deleteData(2);
+        System.out.println(b.isPresent(2));
+        b.printTree();
+        System.out.println(b.size());
     }
 }
