@@ -22,8 +22,21 @@ public class BST {
     public boolean isPresent(int x){
        return isPresentHelper(root,x);
     }
+    private static BinaryTreeNode<Integer> insert(BinaryTreeNode<Integer>node,int x){
+        if (node == null){
+            BinaryTreeNode<Integer> newRoot = new BinaryTreeNode<>(x);
+            return newRoot;
+        }
+        if (x >= node.data){
+            node.right = insert(node.right,x);
+        }else {
+            node.left =insert(node.left,x);
+        }
+        return node;
+    }
     public void insert(int x){
-
+        root = insert(root,x);
+        size++;
     }
     public boolean deleteData(int x){
         return false;
