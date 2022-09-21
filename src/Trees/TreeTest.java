@@ -120,6 +120,17 @@ public class TreeTest {
         }
         return h+1;
     }
+    public static int countLeafNodes(TreeNode<Integer> root){
+        int count = 0;
+        if (root.children.size() == 0){
+            return 1;
+        }
+        for (int i=0;i<root.children.size();i++){
+            count += countLeafNodes(root.children.get(i));
+        }
+        return count;
+
+    }
     public static void main(String[] args) {
         TreeNode<Integer> root = takeInputLevel();
         printTree1(root);
