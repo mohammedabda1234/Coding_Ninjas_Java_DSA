@@ -12,7 +12,7 @@ public class QueueUsingLL <T>{
     private Node<T> front;
     private Node<T>rear;
     private int size;
-    QueueUsingLL(){
+    public QueueUsingLL(){
         this.front =null;
         this.rear =null;
         this.size =0;

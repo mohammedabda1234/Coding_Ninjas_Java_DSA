@@ -1,4 +1,6 @@
 package Trees;
+import Queues.QueueUsingLL;
+
 import java.util.*;
 public class TreeTest {
     public static void printTree(TreeNode<Integer> root){
@@ -52,23 +54,51 @@ public class TreeTest {
         }
         return sum;
     }
-    public static void main(String[] args) {
-        TreeNode<Integer> root = new TreeNode<>(4);
-        TreeNode<Integer> node1 = new TreeNode<>(2);
-        TreeNode<Integer> node2 = new TreeNode<>(3);
-        TreeNode<Integer> node3 = new TreeNode<>(1);
-        TreeNode<Integer> node4 = new TreeNode<>(5);
-        TreeNode<Integer> node5 = new TreeNode<>(6);
-        root.children.add(node1);
-        root.children.add(node2);
-        root.children.add(node3);
 
-        node2.children.add(node4);
-        node2.children.add(node5);
-//        printTree(root);
-//        System.out.println();
-//        printTree1(root);
-//        System.out.println(numOfNode(root));
-        System.out.println(sumOfAllNode(root));
+    public static TreeNode<Integer> takeInputLevel(){
+        Scanner s = new Scanner(System.in);
+        QueueUsingLL<TreeNode<Integer>> pending = new QueueUsingLL<>();
+        System.out.println("Enter root data");
+        int rootData = s.nextInt();
+        if (rootData == -1){
+            return null;
+        }
+        TreeNode<Integer> root = new TreeNode<>(rootData);
+        pending.enqueue(root);
+        while (!pending.isEmpty()){
+            TreeNode<Integer> front = pending.dequeue();
+            System.out.println("Enter number of child of :"+front.data);
+            int numOfChild = s.nextInt();
+            for (int i = 0; i < numOfChild; i++) {
+                System.out.println("Enter the "+(i+1)+" th data of "+front.data);
+                int childData = s.nextInt();
+                TreeNode<Integer> childNode = new TreeNode<>(childData);
+                front.children.add(childNode);
+                pending.enqueue(childNode);
+            }
+
+        }
+        return root;
+    }
+    public static void printLevelWise(TreeNode<Integer> root){
+        Queue<TreeNode<Integer>> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()){
+            int n = queue.size();
+            while (n>0){
+                TreeNode<Integer> p = queue.peek();
+                queue.poll();
+                System.out.print(p.data + " ");
+                for (int i=0;i<p.children.size();i++){
+                    queue.add(p.children.get(i));
+                }
+                n--;
+            }
+            System.out.println();
+        }
+    }
+    public static void main(String[] args) {
+        TreeNode<Integer> root = takeInputLevel();
+        printTree1(root);
     }
 }
