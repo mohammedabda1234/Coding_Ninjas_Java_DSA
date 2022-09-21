@@ -12,6 +12,15 @@ public class check {
             this.data = data;
         }
     }
+    class TreeNode<T> {
+        T data;
+        ArrayList<TreeNode<T>> children;
+
+        TreeNode(T data){
+            this.data = data;
+            children = new ArrayList<TreeNode<T>>();
+        }
+    }
     public static boolean isCousin(BinaryTreeNode<Integer> root, int p, int q) {
         return !isSiblings(root, p, q) && level(root, 0, p) == level(root, 0, q);
     }
@@ -64,6 +73,35 @@ public class check {
             rightArrayList.add(root.data);
             return rightArrayList;
         }
+    }
+    public static TreeNode<Integer> removeLeafNodes(TreeNode<Integer> root) {
+        if(root==null){ return null;}// if root is null return null
+        if(root.children.size()==0){// if root itself is leaf return null
+            return null;
+        }
+        // if root.children is a leaf node
+        // then delete it from children vector
+        for (int i = 0; i < root.children.size(); i++) {
+            TreeNode<Integer> child= root.children.get(i);
+            if (child.children.size() == 0) {
+                // shifting the vector to left
+                // after the point i
+                for (int j = i; j < root.children.size() - 1; j++)
+                    root.children.set(j, root.children.get(j + 1));
+                // delete the last element
+                root.children.remove(root.children.size()-1);
+                i--;
+            }
+        }
+        // Remove all leaf node
+        // of children of root
+        for (int i = 0;
+             i < root.children.size();
+             i++) {
+            // call function for root.children
+            root.children.set(i,removeLeafNodes(root.children.get(i)));
+        }
+        return root;
     }
     public static void main(String[] args) {
 
