@@ -1,6 +1,17 @@
 package Trees;
 
 public class TreeTest {
+    public static void printTree(TreeNode<Integer> root){
+        if (root == null){//spacial case not base case
+            return;
+        }
+        System.out.print(root.data+" ");
+        for (int i = 0;i< root.children.size();i++){
+            TreeNode<Integer>child = root.children.get(i);
+            printTree(child);
+        }
+    }
+
     public static void main(String[] args) {
         TreeNode<Integer> root = new TreeNode<>(4);
         TreeNode<Integer> node1 = new TreeNode<>(2);
@@ -14,6 +25,7 @@ public class TreeTest {
 
         node2.children.add(node4);
         node2.children.add(node5);
+        printTree(root);
 
     }
 }
