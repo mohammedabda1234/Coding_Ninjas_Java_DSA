@@ -131,6 +131,22 @@ public class TreeTest {
         return count;
 
     }
+    public static void replaceWithDepthValue(TreeNode<Integer> root){
+
+        int depth = 0;
+        replace(root,depth);
+    }
+    private static void replace(TreeNode<Integer> root,int depth){
+        if (root == null){
+            return;
+        }
+        root.data = depth;
+        depth++;
+        for (int i=0;i<root.children.size();i++){
+            replace(root.children.get(i),depth);
+        }
+        return;
+    }
     public static void main(String[] args) {
         TreeNode<Integer> root = takeInputLevel();
         printTree1(root);
