@@ -97,6 +97,17 @@ public class TreeTest {
             System.out.println();
         }
     }
+    public static int numNodeGreater(TreeNode<Integer> root,int x){
+
+        int count = 0;
+        if (root.data>x){
+            count++;
+        }
+        for (int i=0;i<root.children.size();i++){
+            count += numNodeGreater(root.children.get(i),x);
+        }
+        return count;
+    }
     public static void main(String[] args) {
         TreeNode<Integer> root = takeInputLevel();
         printTree1(root);
