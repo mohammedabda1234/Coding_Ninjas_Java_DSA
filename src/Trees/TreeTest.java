@@ -147,6 +147,16 @@ public class TreeTest {
         }
         return;
     }
+    public static void printPostOrder(TreeNode<Integer> root){
+
+        if (root == null){
+            return;
+        }
+        for (TreeNode<Integer> node: root.children){
+            printPostOrder(node);
+        }
+        System.out.print(root.data+" ");
+    }
     public static void main(String[] args) {
         TreeNode<Integer> root = takeInputLevel();
         printTree1(root);
