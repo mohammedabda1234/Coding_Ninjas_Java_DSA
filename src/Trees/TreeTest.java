@@ -108,6 +108,18 @@ public class TreeTest {
         }
         return count;
     }
+    public static int getHeight(TreeNode<Integer> root){
+
+        if (root == null){
+            return 0;
+        }
+        int h = 0;
+
+        for (int i=0;i<root.children.size();i++){
+            h = Math.max(h,getHeight(root.children.get(i)));
+        }
+        return h+1;
+    }
     public static void main(String[] args) {
         TreeNode<Integer> root = takeInputLevel();
         printTree1(root);
