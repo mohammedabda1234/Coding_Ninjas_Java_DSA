@@ -1,5 +1,5 @@
 package Trees;
-
+import java.util.*;
 public class TreeTest {
     public static void printTree(TreeNode<Integer> root){
         if (root == null){//spacial case not base case
@@ -37,6 +37,21 @@ public class TreeTest {
         }
         return count;
     }
+    public static int sumOfAllNode(TreeNode<Integer> root){
+        int sum = 0;
+        Queue<TreeNode<Integer>> queue = new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            TreeNode<Integer> p = queue.peek();
+            sum += p.data;
+            queue.poll();
+            int childSize = p.children.size();
+            for (int i=0;i<childSize;i++){
+                queue.add(p.children.get(i));
+            }
+        }
+        return sum;
+    }
     public static void main(String[] args) {
         TreeNode<Integer> root = new TreeNode<>(4);
         TreeNode<Integer> node1 = new TreeNode<>(2);
@@ -50,9 +65,10 @@ public class TreeTest {
 
         node2.children.add(node4);
         node2.children.add(node5);
-        printTree(root);
-        System.out.println();
-        printTree1(root);
-        System.out.println(numOfNode(root));
+//        printTree(root);
+//        System.out.println();
+//        printTree1(root);
+//        System.out.println(numOfNode(root));
+        System.out.println(sumOfAllNode(root));
     }
 }
