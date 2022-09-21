@@ -25,6 +25,18 @@ public class TreeTest {
             printTree1(child);
         }
     }
+
+    public static int numOfNode(TreeNode<Integer>root){
+        int count = 1;
+        if ( root == null){
+            return 0;
+        }
+        for (int i = 0; i < root.children.size(); i++) {
+            int countChild = numOfNode(root.children.get(i));
+            count+=countChild;
+        }
+        return count;
+    }
     public static void main(String[] args) {
         TreeNode<Integer> root = new TreeNode<>(4);
         TreeNode<Integer> node1 = new TreeNode<>(2);
@@ -41,5 +53,6 @@ public class TreeTest {
         printTree(root);
         System.out.println();
         printTree1(root);
+        System.out.println(numOfNode(root));
     }
 }
