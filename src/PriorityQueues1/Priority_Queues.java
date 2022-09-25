@@ -34,11 +34,11 @@ public class Priority_Queues<T> {
         return heap.get(0).value;
     }
     public T removeMin() throws PriorityQueuesException {
-        if (isEmpty()){
+        if (isEmpty()) {
             throw new PriorityQueuesException();
         }
-        Element<T> remove = heap.get(0);
-        T ans = remove.value;
+        Element<T> temp = heap.get(0);
+        T ans = temp.value;
         heap.set(0,heap.get(heap.size()-1));
         heap.remove(heap.size()-1);
         int parentIndex = 0;
@@ -47,22 +47,22 @@ public class Priority_Queues<T> {
 
         while (leftIndex < heap.size()) {
             int minIndex = parentIndex;
-            if (heap.get(leftIndex).priority < heap.get(minIndex).priority) ;
-            minIndex = leftIndex;
-
-            if (rightIndex < heap.size() && (heap.get(rightIndex).priority < heap.get(minIndex).priority)) ;
-            minIndex = rightIndex;
-
-            if (minIndex == parentIndex){
-                break;
+            if (heap.get(leftIndex).priority < heap.get(minIndex).priority) {
+                minIndex = leftIndex;
             }
-
-            Element<T> temp = heap.get(minIndex);
-            heap.set(minIndex, heap.get(parentIndex));
-            heap.set(parentIndex, temp);
-            parentIndex =minIndex;
-            leftIndex = 2 * parentIndex + 1;
-            rightIndex = 2 * parentIndex + 2;
+            if (rightIndex < heap.size() && heap.get(rightIndex).priority < heap.get(minIndex).priority) {
+                minIndex = rightIndex;
+            }
+            if (minIndex == parentIndex) {
+                break;
+            }else {
+                Element<T> temp1 = heap.get(parentIndex);
+                heap.set(parentIndex, heap.get(minIndex));
+                heap.set(minIndex, temp1);
+                parentIndex = minIndex;
+                leftIndex = 2*parentIndex +1;
+                rightIndex = 2*parentIndex + 2;
+            }
         }
         return ans;
     }
