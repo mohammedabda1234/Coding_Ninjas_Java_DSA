@@ -10,7 +10,22 @@ public class Priority_Queues<T> {
     }
 
     public void insert(T value,int priority){
+        Element<T> e = new Element<>(value,priority);
+        heap.add(e);
+        int childIndex = heap.size() -1;
+        int parentIndex = (childIndex - 1)/2;
 
+        while (parentIndex > 0) {
+            if (heap.get(childIndex).priority < heap.get(parentIndex).priority) {
+                Element<T> temp = heap.get(childIndex);
+                heap.set(childIndex, heap.get(parentIndex));
+                heap.set(parentIndex, temp);
+                childIndex = parentIndex;
+                parentIndex = (childIndex -1)/2;
+            }else {
+                return;
+            }
+        }
     }
     public T getMin() throws PriorityQueuesException {
         if (isEmpty()){
