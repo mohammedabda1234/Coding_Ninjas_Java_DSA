@@ -1,8 +1,6 @@
 package PriorityQueuesII;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class KLargest {
     public static boolean checkMaxHeap(int arr[]) {
@@ -35,6 +33,30 @@ public class KLargest {
             }
         }
         return priorityQueue.remove();
+    }
+    public static int buyTicket(int input[], int k) {
+
+        int timer = 0;
+        Queue<Integer> queue = new LinkedList<>();
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for (int i=0;i<input.length;i++){
+            queue.add(i);
+            pq.add(input[i]);
+        }
+        int i=0;
+        while (!queue.isEmpty()){
+            if (input[queue.peek()] < pq.peek()){
+                queue.add(queue.poll());
+            }else{
+                int temp = queue.poll();
+                pq.remove();
+                timer++;
+                if (temp == k){
+                    return timer;
+                }
+            }
+        }
+        return timer;
     }
     public static void printKLargest(int[] arr, int k) {
        PriorityQueue<Integer> pq = new PriorityQueue<>();
