@@ -5,6 +5,24 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 
 public class KLargest {
+    public static boolean checkMaxHeap(int arr[]) {
+
+        for(int  i=0;i<arr.length;i++) {
+
+            int parentIndex = i;
+            int leftChildIndex = 2*i + 1;
+            int rightChildIndex = 2*i + 2;
+
+            if( leftChildIndex < arr.length && arr[parentIndex] < arr[leftChildIndex] ) {
+                return false;
+            }
+            if( rightChildIndex < arr.length && arr[parentIndex] < arr[rightChildIndex] ) {
+                return false;
+            }
+
+        }
+        return true;
+    }
     public static void printKLargest(int[] arr, int k) {
        PriorityQueue<Integer> pq = new PriorityQueue<>();
 
