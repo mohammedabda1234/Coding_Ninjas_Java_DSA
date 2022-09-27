@@ -74,19 +74,50 @@ class TriesNode{
         if (child == null){
             return false;
         }
-          public boolean patternMatching(ArrayList<String> input,String pattern) {
-              for(int i = 0 ; i<input.size();i++) {
+//          public boolean patternMatching(ArrayList<String> input,String pattern) {
+//              for(int i = 0 ; i<input.size();i++) {
+//
+//                  String string = input.get(i);
+//                  Tries suffixTrie = new Tries();
+//                  for(int j=0;j<string.length();j++) {
+//                      suffixTrie.add(string.substring(j));
+//                  }
+//                  if(suffixTrie.search(pattern)) {
+//                      return true;
+//                  }
+//              }
+//              return false;
+//          }
+          private String reverse(String word) {
 
-                  String string = input.get(i);
-                  Tries suffixTrie = new Tries();
+              String xString="";
+              for(int i=word.length()-1;i>=0;i--) {
+                  xString+=word.charAt(i);
+              }
+              return xString;
+
+          }
+
+          public boolean isPalindromePair(ArrayList<String> words) {
+              //Your code goes here
+              for(int i=0;i<words.size();i++) {
+
+                  String string = reverse(words.get(i));
+
+                  Trie suffixTrie = new Trie();
                   for(int j=0;j<string.length();j++) {
                       suffixTrie.add(string.substring(j));
                   }
-                  if(suffixTrie.search(pattern)) {
-                      return true;
+                  for(String word : words) {
+                      if(suffixTrie.search(word)) {
+                          return true;
+                      }
                   }
+
+
               }
               return false;
+
           }
        boolean ans = removeHelper(child,str.substring(1));
         if (!child.isTerminal && child.childCount == 0){
