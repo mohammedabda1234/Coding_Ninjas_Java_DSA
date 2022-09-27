@@ -3,11 +3,13 @@ class TriesNode{
     char data;
     boolean isTerminal;
     TriesNode children[];
+    int childCount ;
 
      public TriesNode(char data){
         this.data = data;
         this.isTerminal = false;
         this.children = new TriesNode[26];
+        this.childCount = 0;
     }
   }
   public class Tries {
@@ -27,6 +29,7 @@ class TriesNode{
         if (child == null){
             child = new TriesNode(str.charAt(0));
             root.children[childIndex] = child;
+            root.childCount++;
         }
         addHelper(child,str.substring(1));
     }
@@ -50,7 +53,24 @@ class TriesNode{
       }
 
       public void remove(String str){
-
+        removeHelper(root,str);
     }
 
-}
+      private void removeHelper(TriesNode root, String str) {
+        if (str.length() == 0){
+            root.isTerminal = false;
+            return;
+        }
+        int childIndex = str.charAt(0) - 'A';
+        TriesNode child = root.children[childIndex];
+        if (child == null){
+            return;
+        }
+        removeHelper(child,str.substring(1));
+        if (!child.isTerminal && child.childCount == 0){
+            root.children[childIndex] = null;
+            root.childCount--;
+        }
+      }
+
+  }

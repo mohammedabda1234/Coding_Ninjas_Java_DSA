@@ -5,6 +5,8 @@ public class TriesUse {
         Tries t = new Tries();
         t.add("NOTE");
         t.add("AND");
-        System.out.println(t.search("NOTE"));
+        System.out.println(t.search("AND"));
+        t.remove("AND");
+        System.out.println(t.search("AND"));
     }
 }
