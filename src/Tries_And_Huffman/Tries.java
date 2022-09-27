@@ -88,38 +88,67 @@ class TriesNode{
 //              }
 //              return false;
 //          }
-          private String reverse(String word) {
+//          private String reverse(String word) {
+//
+//              String xString="";
+//              for(int i=word.length()-1;i>=0;i--) {
+//                  xString+=word.charAt(i);
+//              }
+//              return xString;
+//
+//          }
+//
+//          public boolean isPalindromePair(ArrayList<String> words) {
+//              //Your code goes here
+//              for(int i=0;i<words.size();i++) {
+//
+//                  String string = reverse(words.get(i));
+//
+//                  Trie suffixTrie = new Trie();
+//                  for(int j=0;j<string.length();j++) {
+//                      suffixTrie.add(string.substring(j));
+//                  }
+//                  for(String word : words) {
+//                      if(suffixTrie.search(word)) {
+//                          return true;
+//                      }
+//                  }
+//
+//
+//              }
+//              return false;
+//
+//          }
+          public void autoComplete(ArrayList<String> input, String word) {
 
-              String xString="";
-              for(int i=word.length()-1;i>=0;i--) {
-                  xString+=word.charAt(i);
+              // Write your code here
+              Tries trie = new Tries();
+              for(String string : input ) {
+                  trie.add(string);
               }
-              return xString;
+              TriesNode t = trie.search(word);
+              if(t==null) {
+                  return ;
+              }
+              printPossibleWords(t,word,"");
+
 
           }
 
-          public boolean isPalindromePair(ArrayList<String> words) {
-              //Your code goes here
-              for(int i=0;i<words.size();i++) {
+          private void printPossibleWords(TriesNode root, String word str,String output ) {
 
-                  String string = reverse(words.get(i));
-
-                  Trie suffixTrie = new Trie();
-                  for(int j=0;j<string.length();j++) {
-                      suffixTrie.add(string.substring(j));
-                  }
-                  for(String word : words) {
-                      if(suffixTrie.search(word)) {
-                          return true;
-                      }
-                  }
-
-
+              if(root.isTerminal) {
+                  System.out.println(word + output);
               }
-              return false;
+              for(int i=0;i<root.children.length;i++) {
+                  if(root.children[i]!=null)
+                      printPossibleWords(root.children[i], word, output + root.children[i].data  );
+              }
+
 
           }
-       boolean ans = removeHelper(child,str.substring(1));
+
+          boolean ans = removeHelper(child,str.substring(1));
         if (!child.isTerminal && child.childCount == 0){
             root.children[childIndex] = null;
             root.childCount--;
