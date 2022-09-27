@@ -1,4 +1,5 @@
 package Tries_And_Huffman;
+import java.util.ArrayList;
 class TriesNode{
     char data;
     boolean isTerminal;
@@ -73,6 +74,20 @@ class TriesNode{
         if (child == null){
             return false;
         }
+          public boolean patternMatching(ArrayList<String> input,String pattern) {
+              for(int i = 0 ; i<input.size();i++) {
+
+                  String string = input.get(i);
+                  Tries suffixTrie = new Tries();
+                  for(int j=0;j<string.length();j++) {
+                      suffixTrie.add(string.substring(j));
+                  }
+                  if(suffixTrie.search(pattern)) {
+                      return true;
+                  }
+              }
+              return false;
+          }
        boolean ans = removeHelper(child,str.substring(1));
         if (!child.isTerminal && child.childCount == 0){
             root.children[childIndex] = null;
