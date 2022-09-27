@@ -14,15 +14,18 @@ class TriesNode{
   }
   public class Tries {
     private TriesNode root;
+    private int numWords;
 
-    public Tries(){
+
+      public Tries(){
         root = new TriesNode('\n');
+        this.numWords = 0;
     }
 
-    private void addHelper(TriesNode root,String str){
+    private boolean addHelper(TriesNode root,String str){
         if (str.length() == 0){
             root.isTerminal = true;
-            return;
+            return true;
         }
         int childIndex = str.charAt(0) - 'A';
         TriesNode child = root.children[childIndex];
@@ -31,10 +34,12 @@ class TriesNode{
             root.children[childIndex] = child;
             root.childCount++;
         }
-        addHelper(child,str.substring(1));
+        return addHelper(child,str.substring(1));
     }
     public void add(String str){
-        addHelper(root,str);
+        if (addHelper(root,str)){
+            numWords++;
+        }
     }
     public boolean search(String str){
         return searchHelper(root,str);
@@ -53,24 +58,30 @@ class TriesNode{
       }
 
       public void remove(String str){
-        removeHelper(root,str);
+        if (removeHelper(root,str)){
+            numWords--;
+        }
     }
 
-      private void removeHelper(TriesNode root, String str) {
+      private boolean removeHelper(TriesNode root, String str) {
         if (str.length() == 0){
             root.isTerminal = false;
-            return;
+            return false;
         }
         int childIndex = str.charAt(0) - 'A';
         TriesNode child = root.children[childIndex];
         if (child == null){
-            return;
+            return false;
         }
-        removeHelper(child,str.substring(1));
+       boolean ans = removeHelper(child,str.substring(1));
         if (!child.isTerminal && child.childCount == 0){
             root.children[childIndex] = null;
             root.childCount--;
         }
+        return ans;
+      }
+      public int countWords() {
+          return numWords;
       }
 
   }
