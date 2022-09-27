@@ -17,8 +17,21 @@ class TriesNode{
         root = new TriesNode('\n');
     }
 
+    private void addHelper(TriesNode root,String str){
+        if (str.length() == 0){
+            root.isTerminal = true;
+            return;
+        }
+        int childIndex = str.charAt(0) - 'A';
+        TriesNode child = root.children[childIndex];
+        if (child == null){
+            child = new TriesNode(str.charAt(0));
+            root.children[childIndex] = child;
+        }
+        addHelper(child,str.substring(1));
+    }
     public void add(String str){
-
+        addHelper(root,str);
     }
     public boolean search(String str){
         return false;
