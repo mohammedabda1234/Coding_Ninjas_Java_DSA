@@ -34,9 +34,22 @@ class TriesNode{
         addHelper(root,str);
     }
     public boolean search(String str){
-        return false;
+        return searchHelper(root,str);
     }
-    public void remove(String str){
+
+      private boolean searchHelper(TriesNode root, String str) {
+        if (str.length() == 0){
+            return root.isTerminal;
+        }
+        int childIndex = str.charAt(0) - 'A';
+        TriesNode child = root.children[childIndex];
+        if (child == null){
+            return false;
+        }
+        return searchHelper(child,str.substring(1));
+      }
+
+      public void remove(String str){
 
     }
 
