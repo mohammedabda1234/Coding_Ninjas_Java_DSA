@@ -19,12 +19,18 @@ public class ReturnSubString {
         }
         return outPut;
     }
+    public static void printSubsequence(String input,String soFar){
+        if (input.length() == 0){
+            System.out.println(soFar);
+            return;
+        }
+        String small = input.substring(1);
+        printSubsequence(small,soFar);
+        printSubsequence(small,soFar+input.charAt(0));
+    }
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         String str = s.next();
-        String[] out = subSequence(str);
-        for (String output :out){
-            System.out.print(output+"  ");
-        }
+        printSubsequence(str,"");
     }
 }
