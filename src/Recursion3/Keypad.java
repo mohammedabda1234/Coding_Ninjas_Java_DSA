@@ -40,13 +40,24 @@ public class Keypad {
         return "";
     }
 
+    public static void printKeyPad(int input,String soFar){
+        if (input == 0){
+            System.out.println(soFar);
+            return;
+        }
+        int lastDigit = input % 10;
+        int small = input/10;
+        String optionsLastDigit = getOptions(lastDigit);
+        for (int i = 0; i < optionsLastDigit.length(); i++) {
+            printKeyPad(small,optionsLastDigit.charAt(i)+soFar);
+        }
+
+    }
+
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
         int input = s.nextInt();
-        String[] output = keypadCombination(input);
-        for (String out : output){
-            System.out.println(out);
-        }
+       printKeyPad(input,"");
 
     }
 }
