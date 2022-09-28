@@ -119,34 +119,32 @@ class TriesNode{
 //              return false;
 //
 //          }
-          public void autoComplete(ArrayList<String> input, String word) {
-
-              // Write your code here
-              Tries trie = new Tries();
-              for(String string : input ) {
-                  trie.add(string);
-              }
-              TriesNode t = trie.search(word);
-              if(t==null) {
-                  return ;
-              }
-              printPossibleWords(t,word,"");
-
-
-          }
-
-          private void printPossibleWords(TriesNode root, String word str,String output ) {
-
-              if(root.isTerminal) {
-                  System.out.println(word + output);
-              }
-              for(int i=0;i<root.children.length;i++) {
-                  if(root.children[i]!=null)
-                      printPossibleWords(root.children[i], word, output + root.children[i].data  );
-              }
-
-
-          }
+//          public void autoComplete(ArrayList<String> input, String word) {
+//             Tries trie = new Tries();
+//              for(String string : input ) {
+//                  trie.add(string);
+//              }
+//              TriesNode t = trie.search(word);
+//              if(t==null) {
+//                  return ;
+//              }
+//              printPossibleWords(t,word,"");
+//
+//
+//          }
+//
+//          private void printPossibleWords(TriesNode root, String word str,String output ) {
+//
+//              if(root.isTerminal) {
+//                  System.out.println(word + output);
+//              }
+//              for(int i=0;i<root.children.length;i++) {
+//                  if(root.children[i]!=null)
+//                      printPossibleWords(root.children[i], word, output + root.children[i].data  );
+//              }
+//
+//
+//          }
 
           boolean ans = removeHelper(child,str.substring(1));
         if (!child.isTerminal && child.childCount == 0){
