@@ -17,6 +17,12 @@ public class RatInMaze {
         path[i][j] = 1;
         //destination cell
         if (i == n -1 && j == n -1){
+            for (int k = 0; k < n; k++) {
+                for (int l = 0; l < n; l++) {
+                    System.out.print(path[k][l]+" ");
+                }
+                System.out.println();
+            }
             return true;
         }
         //explore all direction
