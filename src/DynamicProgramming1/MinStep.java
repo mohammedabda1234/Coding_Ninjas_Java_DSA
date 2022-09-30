@@ -47,6 +47,24 @@ public class MinStep {
         }
         return Math.min(ans1,Math.min(ans2,ans3))+1;
     }
+    public static int minStepTo(int n){
+        if (n == 1){
+            return 0;
+        }
+        int[] dp = new int[n+1];
+        dp[1] = 0;
+        for (int i = 2; i <= n; i++) {
+            int min = dp[i-1];
+            if (i % 2 == 0){
+               min = Math.min(min,dp[n/2]);
+            }
+            if (i % 3 == 0){
+               min = Math.min(min,dp[n/3]);
+            }
+           dp[i] = min+1;
+        }
+        return dp[n];
+    }
     public static void main(String[] args) {
         int n = 10;
         System.out.println(minStepTo1(n));
@@ -55,5 +73,6 @@ public class MinStep {
             dp[i] = -1;
         }
         System.out.println(minStepTo1(n,dp));
+        System.out.println(minStepTo(n));
     }
 }
