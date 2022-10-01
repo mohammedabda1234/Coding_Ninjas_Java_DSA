@@ -48,6 +48,27 @@ public class LCS {
         }
         return myAns;
     }
+    public static int Lcs(String str1,String str2){
+        int m = str1.length();
+        int n = str2.length();
+        int[][] dp = new int[m+1][n+1];
+        for (int i = m-1; i >= 0 ; i--) {
+            for (int j = n-1; j >= 0 ; j--) {
+                int ans;
+                if (str1.charAt(i) == str2.charAt(j)){
+                    ans = 1 + dp[i+1][j+1];
+                }else {
+                    int ans1 = dp[i+1][j];
+                    int ans2 = dp[i][j+1];
+                    ans = Math.max(ans1,ans2);
+                }
+                dp[i][j] = ans;
+            }
+        }
+
+        return dp[0][0];
+    }
+
     public static void main(String[] args) {
         String str1 = "debgmc";
         String str2 = "adbfglc";
@@ -59,5 +80,6 @@ public class LCS {
         }
         int ans = Lcs(str1,str2,0,0,dp);
         System.out.println(ans);
+        System.out.println(Lcs(str1,str2));
     }
 }
