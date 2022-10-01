@@ -33,6 +33,27 @@ public class Knap {
         }
         return dp[0][W];
     }
+    public static int countWaysToMakeChange(int Coins[], int value){
+        int[] ways = new int[value + 1];
+        // Set the first way to 1 because its 0 and
+        // there is 1 way to make 0 with 0 coins
+        ways[0] = 1;
+        // Go through all of the coins
+        for (int i = 0; i < Coins.length; i++) {
+            // Make a comparison to each index value
+            // of ways with the coin value.
+            for (int j = 0; j < ways.length; j++) {
+                if (Coins[i] <= j) {
+                    // Update the ways array
+                    ways[j] += ways[(int)(j - Coins[i])];
+                }
+            }
+        }
+        // return the value at the Nth position
+        // of the ways array.
+        return ways[value];
+    }
+
     public static void main(String[] args) {
         int[] val = {200,300,100};
         int[] wt = {20,25,30};
