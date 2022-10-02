@@ -8,6 +8,7 @@ public class Player {
         setName(name);
         setSymbol(symbol);
     }
+
     public String getName() {
         return name;
     }
