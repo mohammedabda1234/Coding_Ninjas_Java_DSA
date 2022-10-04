@@ -1,5 +1,6 @@
 package Graphs1;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -35,6 +36,30 @@ public class Graphs {
                 }
             }
         }
+    }
+    public static ArrayList<Integer> getPathDFS(int[][] edges,boolean[] visited,int V1,int V2){
+        if(V1==V2)
+        {
+            ArrayList<Integer> ans=new ArrayList<>();
+            visited[V1]=true;
+            ans.add(V1);
+            return ans;
+        }
+        visited[V1]=true;
+        for(int i=0;i<edges.length;i++)
+        {
+            if(edges[V1][i]==1 && !visited[i])
+            {
+                ArrayList<Integer> arr=getPathDFS(edges,visited,i,V2);
+                if(arr!=null)
+                {
+                    arr.add(V1);
+
+                    return arr;
+                }
+            }
+        }
+        return null;
     }
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
