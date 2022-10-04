@@ -1,9 +1,6 @@
 package Graphs1;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
 public class Graphs {
 
@@ -60,6 +57,44 @@ public class Graphs {
             }
         }
         return null;
+    }
+
+    public static ArrayList<Integer> getPathBFS(int[][] adjMatrix,int s,int e) {
+        Queue<Integer> pending = new LinkedList<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
+        boolean[] visited = new boolean[adjMatrix.length];
+        visited[s] = true;
+        pending.add(s);
+        map.put(s, -1);
+        boolean pathFound = false;
+        while (!pending.isEmpty()) {
+            int currentVertex = pending.poll();
+            for (int i = 0; i < adjMatrix.length; i++) {
+                if (adjMatrix[currentVertex][i] == 1 && !visited[i]) {
+                    pending.add(i);
+                    visited[i] = true;
+                    map.put(i, currentVertex);
+                    if (i == e) {
+                        //path found
+                        pathFound = true;
+                        break;
+                    }
+                }
+            }
+            if (pathFound) {
+                ArrayList<Integer> path = new ArrayList<>();
+                int Vertex = e;
+                while (Vertex == -1) {
+                    path.add(Vertex);
+                    int parent = map.get(Vertex);
+                    Vertex = parent;
+                }
+                return path;
+            } else {
+                return null;
+            }
+        }
+    return null;
     }
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
